@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Course Options</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let option of options | async" (click)="optionSelected(option)">
+      <h2>{{option.Instructor}}</h2>
+      <h4>Place: {{option.Place}}</h4>
+      <h4>Time: {{option.Time}}</h4>
+    </button>
+  </ion-list>
+</ion-content>

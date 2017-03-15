@@ -1,57 +1,67 @@
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
-import { RegisterPage } from '../register/register';
+import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
+import { ResetPasswordPage } from '../reset-password/reset-password';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
+
 export class LoginPage {
-  loading: Loading;
-  registerCredentials = {email: '', password: ''};
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {}
+  public loginForm;
+  loading: any;
 
-  public createAccount() {
-    this.nav.push(RegisterPage);
-  }
+  constructor(public nav: NavController, public authData: AuthService, 
+    public formBuilder: FormBuilder,public alertCtrl: AlertController, 
+    public loadingCtrl: LoadingController) {
 
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-        if (allowed) {
-          setTimeout(() => {
-            this.loading.dismiss();
-            this.nav.setRoot(HomePage)
-          });
-        } else {
-          this.showError("Permission to login denied");
-        }
-      },
-      error => {
-        this.showError(error);
+      this.loginForm = formBuilder.group({
+        email: ['', Validators.compose([Validators.required])],
+        password: ['', Validators.compose([Validators.minLength(6), 
+        Validators.required])]
       });
+
+    }
+
+  loginUser(): void {
+    if (!this.loginForm.valid){
+      console.log(this.loginForm.value);
+    } else {
+      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
+        this.loading.dismiss().then( () => {
+          this.nav.setRoot(HomePage);
+        });
+      }, error => {
+        this.loading.dismiss().then( () => {
+          let alert = this.alertCtrl.create({
+            message: error.message,
+            buttons: [
+              {
+                text: "Ok",
+                role: 'cancel'
+              }
+            ]
+          });
+          alert.present();
+        });
+      });
+
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
+    }
   }
 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
+  goToSignup(): void {
+    this.nav.push(SignupPage);
   }
 
-  showError(text) {
-    setTimeout(() => {
-      this.loading.dismiss();
-    });
-
-    let alert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present(prompt);
+  goToResetPassword(): void {
+    this.nav.push(ResetPasswordPage);
   }
+
 }

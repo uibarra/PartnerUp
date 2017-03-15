@@ -1,17 +1,18 @@
 <ion-header>
-  <ion-navbar color="blue">
-    <ion-title> Partner-Up</ion-title>
-      Ready to study hard? {{username}}
+  <ion-navbar color="primary">
+    <ion-title>Ready to study hard?</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="logOut()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="home" padding>
   <p>
-    <button ion-button color="light" full>Search Class</button>
-  </p>
-  <!--<p>
-    <button ion-button full>Default</button>
-  </p> -->
+    <button ion-button color="light" full (click)="searchClass()">Search Class</button>
+  </p> 
 
   <p>
     <button ion-button color="light" full>Invites</button>
@@ -27,9 +28,4 @@
     <button ion-button color="light" full>Account</button>
   </p>
 
-  <p>
-    <button ion-button (click)="logout()" color="light" full>Logout</button>
-  </p>
-
-  <!--Your uci ned ID is: {{email}}-->
 </ion-content>

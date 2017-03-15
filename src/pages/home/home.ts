@@ -1,24 +1,30 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
 import { LoginPage } from '../login/login';
+import { AuthService } from '../../providers/auth-service';
+import { SearchPage } from '../pages/search/search';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username = 'FranKevUliBri';
-  email = '';
-  constructor(private nav: NavController, private auth: AuthService) {
-    let info = this.auth.getUserInfo();
-    this.username = info.name;
-    this.email = info.email;
+
+
+  constructor(private nav: NavController,  public authData: AuthService) {
+
   }
 
-  public logout() {
-    this.auth.logout().subscribe(succ => {
-      this.nav.setRoot(LoginPage)
+  logOut(){
+    this.authData.logoutUser().then(() => {
+      this.nav.setRoot(LoginPage);
     });
   }
+
+  searchClass(){
+    this.authData.logoutUser().then(() => {
+      this.nav.setRoot(SearchPage);
+    });
+  }
+
 }
