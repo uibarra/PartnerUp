@@ -12,12 +12,12 @@ export class SearchPage {
   depts: FirebaseListObservable<any[]>;
 
   constructor(public nav: NavController, public alertCtrl: AlertController, angFire: AngularFire) {
-    this.depts = angFire.database.list('/department');
+    this.depts = angFire.database.list('/departments/deparments');
   }
 
   deptSelected(dept) {
     this.nav.push(ClassesPage, {
-      dept: dept.$key
+      dept: dept.$value
     });
   }
 }

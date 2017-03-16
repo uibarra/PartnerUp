@@ -7,7 +7,7 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let dept of depts | async" (click)="deptSelected(dept)">
-      <h2>{{dept.$key}}</h2>
+      <h2>{{dept.$value}}</h2>
     </button>
   </ion-list>
 </ion-content>
