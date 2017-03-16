@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { AngularFireModule } from 'angularfire2';
+
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
@@ -10,6 +13,14 @@ import { ClassesPage } from '../pages/classes/classes';
 import { OptionsPage } from '../pages/options/options';
 import { SearchPage } from '../pages/search/search';
 
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
+  authDomain: "partnerup-f0351.firebaseapp.com",
+  databaseURL: "https://partnerup-f0351.firebaseio.com",
+  storageBucket: "partnerup-f0351.appspot.com",
+  messagingSenderId: "889037149697"
+};
 
 @NgModule({
   declarations: [
@@ -23,7 +34,8 @@ import { SearchPage } from '../pages/search/search';
     OptionsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,6 +48,6 @@ import { SearchPage } from '../pages/search/search';
     ClassesPage,
     OptionsPage
   ],
-  providers: [AuthService]
+  providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

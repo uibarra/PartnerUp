@@ -19,12 +19,11 @@ export class MyApp {
   constructor(platform: Platform) {
 
     firebase.initializeApp({
-
-       // apiKey: "",
-       //  authDomain: "",
-       //  databaseURL: "",
-       //  storageBucket: "",
-       //  messagingSenderId: ""
+      apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
+      authDomain: "partnerup-f0351.firebaseapp.com",
+      databaseURL: "https://partnerup-f0351.firebaseio.com",
+      storageBucket: "partnerup-f0351.appspot.com",
+      messagingSenderId: "889037149697"
     });
 
     this.zone = new NgZone({});
@@ -33,11 +32,11 @@ export class MyApp {
         if (!user) {
           this.rootPage = LoginPage;
           unsubscribe();
-        } else { 
-          this.rootPage = HomePage; 
+        } else {
+          this.rootPage = HomePage;
           unsubscribe();
         }
-      });     
+      });
     });
 
     platform.ready().then(() => {

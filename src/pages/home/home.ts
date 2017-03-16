@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../providers/auth-service';
-import { SearchPage } from '../pages/search/search';
+import { SearchPage } from '../search/search';
 
 @Component({
   selector: 'page-home',
