@@ -22,9 +22,7 @@ export class HomePage {
   }
 
   searchClass(){
-    this.authData.logoutUser().then(() => {
-      this.nav.setRoot(SearchPage);
-    });
+    this.nav.push(SearchPage);
   }
 
 }
