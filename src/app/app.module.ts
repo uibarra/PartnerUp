@@ -12,7 +12,9 @@ import { AuthService } from '../providers/auth-service';
 import { ClassesPage } from '../pages/classes/classes';
 import { OptionsPage } from '../pages/options/options';
 import { SearchPage } from '../pages/search/search';
-
+import { ChooseMajorsPage } from '../pages/edit-classes/edit-classes';
+import { ChooseClassesPage } from '../pages/choose-classes/choose-classes';
+import { ViewSelectedMajorsModal } from '../pages/edit-classes/view-selected-majors';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
@@ -31,7 +33,10 @@ export const firebaseConfig = {
     SignupPage,
     SearchPage,
     ClassesPage,
-    OptionsPage
+    OptionsPage,
+    ChooseMajorsPage,
+    ChooseClassesPage,
+    ViewSelectedMajorsModal
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -46,7 +51,10 @@ export const firebaseConfig = {
     SignupPage,
     SearchPage,
     ClassesPage,
-    OptionsPage
+    OptionsPage,
+    ChooseMajorsPage,
+    ChooseClassesPage,
+    ViewSelectedMajorsModal
   ],
   providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

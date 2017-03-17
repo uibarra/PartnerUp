@@ -11,7 +11,7 @@ export class AuthService {
   constructor() {
 
     this.fireAuth = firebase.auth();
-    this.userProfile = firebase.database().ref('/userProfile'); //database reference to the userProfile node on firevase database
+    this.userProfile = firebase.database().ref('/userProfile'); //database reference to the userProfile node on firebase database
 
   }
 

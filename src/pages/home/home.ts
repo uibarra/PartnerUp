@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../providers/auth-service';
 import { SearchPage } from '../search/search';
+import { ChooseMajorsPage } from '../edit-classes/edit-classes';
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
@@ -23,6 +25,11 @@ export class HomePage {
 
   searchClass(){
     this.nav.push(SearchPage);
+  }
+
+  editClassesToSearch(){
+    //this will take you to choose the major(s) you want to search for then to the class lists for those choosen majors
+    this.nav.push(ChooseMajorsPage);
   }
 
 }
