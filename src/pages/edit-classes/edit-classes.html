@@ -1,21 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Choose Your Majors</ion-title>
-    <ion-buttons end>
-        <button ion-button icon-only (click)="presentSelectedMajorsModal()">
-          <ion-icon name="glasses"></ion-icon>
-        </button>
-      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
-	<ion-list [virtualScroll]="depts">
-		<ion-item *virtualItem="let dept" (click)="clicked(dept)" class = "department-item" >
-    		{{ dept }}
-  		</ion-item>
+ <ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let dept of depts">
+      <ion-label>{{dept}}</ion-label>
+      <ion-checkbox (click) = "addMajorToList(dept)" checked="false"></ion-checkbox>
+    </ion-item>
   </ion-list>
-
-
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button round (click) = "saveMajorListToDataBase()">
+      Save Your Majors
+    </button>
+  </ion-toolbar>
+</ion-footer>

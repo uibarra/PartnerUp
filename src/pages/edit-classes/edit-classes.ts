@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, ModalController } from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { ChooseClassesPage } from '../choose-classes/choose-classes';
-import { ViewSelectedMajorsModal } from '../edit-classes/view-selected-majors'; //be careful of the directory difference here and in app.module
 import firebase from 'firebase';
-
-//THIS IS THE CONTROLLER BRO!!!!
 
 @Component({
   selector: 'page-edit-classes',
@@ -17,6 +14,7 @@ export class ChooseMajorsPage {
   depts: any;
   selected: any;
   public loggedInUser: any;
+  loggedInUserID: any;
 
   constructor(public nav: NavController, public alertCtrl: AlertController, angFire: AngularFire, public modalCtrl: ModalController) {
 
@@ -24,14 +22,16 @@ export class ChooseMajorsPage {
 
     this.selected = [];
     this.loggedInUser = firebase.auth().currentUser;
+    this.loggedInUserID = this.loggedInUser.uid;
 
     ref.on('value', (data) => {
         var departments = data.val()['deparments'];
         this.depts = departments;
     });
+
   }
 
-  clicked(dept){
+  addMajorToList(dept){
 
     var index = this.selected.indexOf(dept);
     if (index > -1) {
@@ -41,18 +41,10 @@ export class ChooseMajorsPage {
     }
   }
 
-  //the dept that is passed here has to be an array!!!
-  majorsSelected(dept) {
-    this.nav.push(ChooseClassesPage, {
-      dept: dept.$value
-    });
+  saveMajorListToDataBase(){
+    var ref = firebase.database().ref().child('userProfile').child(this.loggedInUserID).child("majorsList");
+    ref.set(this.selected);
+
   }
-
-presentSelectedMajorsModal() {
-
-      //pass in the selected majors for viewing
-     let selectedMajorsModal = this.modalCtrl.create(ViewSelectedMajorsModal, {"params" : this.selected});
-     selectedMajorsModal.present();
- }
 
 }

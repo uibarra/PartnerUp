@@ -14,7 +14,6 @@ import { OptionsPage } from '../pages/options/options';
 import { SearchPage } from '../pages/search/search';
 import { ChooseMajorsPage } from '../pages/edit-classes/edit-classes';
 import { ChooseClassesPage } from '../pages/choose-classes/choose-classes';
-import { ViewSelectedMajorsModal } from '../pages/edit-classes/view-selected-majors';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
@@ -35,8 +34,7 @@ export const firebaseConfig = {
     ClassesPage,
     OptionsPage,
     ChooseMajorsPage,
-    ChooseClassesPage,
-    ViewSelectedMajorsModal
+    ChooseClassesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -53,8 +51,7 @@ export const firebaseConfig = {
     ClassesPage,
     OptionsPage,
     ChooseMajorsPage,
-    ChooseClassesPage,
-    ViewSelectedMajorsModal
+    ChooseClassesPage
   ],
   providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

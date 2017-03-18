@@ -4,6 +4,7 @@ import { LoginPage } from '../login/login';
 import { AuthService } from '../../providers/auth-service';
 import { SearchPage } from '../search/search';
 import { ChooseMajorsPage } from '../edit-classes/edit-classes';
+import { ChooseClassesPage } from '../choose-classes/choose-classes';
 import firebase from 'firebase';
 
 @Component({
@@ -27,9 +28,13 @@ export class HomePage {
     this.nav.push(SearchPage);
   }
 
-  editClassesToSearch(){
-    //this will take you to choose the major(s) you want to search for then to the class lists for those choosen majors
+  addMajorsToSearch(){
+    //this will take you to choose the major(s) you want to save when searching for classes to add
     this.nav.push(ChooseMajorsPage);
+  }
+
+  addClassesToSearch(){
+    this.nav.push(ChooseClassesPage);
   }
 
 }
