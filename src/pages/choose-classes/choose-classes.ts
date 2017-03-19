@@ -53,16 +53,29 @@ export class ChooseClassesPage {
 
   	addClass(className){
   		var index = this.selectedClasses.indexOf(className);
-		if (index > -1) {
-	    	this.selectedClasses.splice(index, 1);
-		} else {
-	 	   this.selectedClasses.push(className);
-		}
+		  if (index > -1) {
+	    	  this.selectedClasses.splice(index, 1);
+		  } else {
+	 	     this.selectedClasses.push(className);
+		  }
   	}
 
   	saveClassesToDatabase(){
   		var ref = firebase.database().ref().child('userProfile').child(this.loggedInUserID).child("classesList");
-		ref.set(this.selectedClasses);
+		  ref.set(this.selectedClasses);
+      this.addUserToClasses(this.loggedInUserID);
   	}
+
+
+    addUserToClasses(userID){
+
+        for(let className of this.selectedClasses){
+          var ref= firebase.database().ref().child(className).child("classMateIDs");
+          ref.child(userID).set(true); //sets to true if the user is in the class,
+                                       // later on if we wanna delete the user, we set it to false 
+        }
+      }
+
+    
 
 }
