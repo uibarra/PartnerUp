@@ -1,26 +1,34 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Classes</ion-title>
+    <ion-title>Your classes</ion-title>
       <ion-buttons end>
         <button ion-button icon-only (click)="addClass()">
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let course of classes | async">
+    <!-- <ion-item-sliding *ngFor="let course of classes | async">
       <ion-item>
         <h5>{{course.Course}}</h5>
       </ion-item>
       <ion-item-options side="right ">
         <button ion-button color="danger" (click)="removeClass(course.$key)">
-          <ion-icon name="remove"></ion-icon>
+          <ion-icon name="close"></ion-icon>
         </button>
       </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-sliding> -->
+
+    <ion-item *ngFor="let course of classes | async">
+      <ion-item text-wrap no-lines>
+        <h6>{{course.Course}}</h6>
+      </ion-item>
+      <button ion-button item-right color="danger" (click)="removeClass(course.$key)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -50,12 +50,12 @@ export class ClassesPage {
       Dept: this.dept,
       Course: course.$key
     })
-
-    let alert = this.alertCtrl.create({
-      title: 'Class Added!',
-      buttons: ['OK']
-    });
-    alert.present();
+    // 
+    // let alert = this.alertCtrl.create({
+    //   title: 'Class Added!',
+    //   buttons: ['OK']
+    // });
+    // alert.present();
   }
 
 }

@@ -10,10 +10,9 @@ import firebase from 'firebase';
 })
 
 export class ChooseClassesPage {
-
-	depts: any;
-  	public loggedInUser: any;
-  	public loggedInUserID: any;
+  
+  	loggedInUser: any;
+  	loggedInUserID: any;
     classes: FirebaseListObservable<any>;
 
   	constructor(
