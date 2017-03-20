@@ -12,6 +12,7 @@ import { ClassesPage } from '../pages/classes/classes';
 import { OptionsPage } from '../pages/options/options';
 import { SearchPage } from '../pages/search/search';
 import { SearchGroupsPage } from '../pages/search-groups/search-groups';
+import { ClassGroupsPage } from '../pages/class-groups/class-groups';
 import { ChooseMajorsPage } from '../pages/edit-classes/edit-classes';
 import { ChooseClassesPage } from '../pages/choose-classes/choose-classes';
 
@@ -32,6 +33,7 @@ export const firebaseConfig = {
     SignupPage,
     SearchPage,
     SearchGroupsPage,
+    ClassGroupsPage,
     ClassesPage,
     OptionsPage,
     ChooseMajorsPage,
@@ -50,6 +52,7 @@ export const firebaseConfig = {
     SignupPage,
     SearchPage,
     SearchGroupsPage,
+    ClassGroupsPage,
     ClassesPage,
     OptionsPage,
     ChooseMajorsPage,

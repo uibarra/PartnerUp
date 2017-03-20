@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-wrap>Groups</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item text-wrap *ngFor="let group of groups | async" (click)="showGroup(group)">
+      <h1>{{group.$key}}</h1>
+      <h2>Name: {{group.Name}}</h2>
+      <p>Members: {{groups.length}}</p>
+    </button>
+  </ion-list>
+</ion-content>
