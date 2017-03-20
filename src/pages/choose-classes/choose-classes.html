@@ -1,25 +1,26 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Choose Your Classes</ion-title>
+    <ion-title>Classes</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addClass()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
-  
+
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let class of deptListOfDepartmentObjects">
-		<ion-item *ngFor="let className of class | async">
-			<ion-label>{{className.$key}}</ion-label>
-			<ion-checkbox (click) = "addClass(className.$key)" checked="false"></ion-checkbox>
-		</ion-item>
-    </ion-item>
+    <ion-item-sliding *ngFor="let course of classes | async">
+      <ion-item>
+        <h5>{{course.Course}}</h5>
+      </ion-item>
+      <ion-item-options side="right ">
+        <button ion-button color="danger" (click)="removeClass(course.$key)">
+          <ion-icon name="remove"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <button ion-button round (click) = "saveClassesToDatabase()">
-    	Save Your Classes
-    </button>
-  </ion-toolbar>
-</ion-footer>

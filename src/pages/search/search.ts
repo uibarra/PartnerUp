@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, ViewController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { ClassesPage } from '../classes/classes';
 
@@ -10,14 +10,22 @@ import { ClassesPage } from '../classes/classes';
 
 export class SearchPage {
   depts: FirebaseListObservable<any[]>;
+  uid:string
 
-  constructor(public nav: NavController, public alertCtrl: AlertController, angFire: AngularFire) {
+  constructor(
+    public nav: NavController, private view: ViewController, public alertCtrl: AlertController,
+    public params: NavParams, angFire: AngularFire) {
+
+    this.view = view;
+    this.uid = this.params.get('uid');
     this.depts = angFire.database.list('/departments/deparments');
   }
 
   deptSelected(dept) {
     this.nav.push(ClassesPage, {
-      dept: dept.$value
-    });
+      uid: this.uid,
+      dept: dept.$value,
+     });
   }
+
 }

@@ -5,14 +5,13 @@ import { AuthService } from '../../providers/auth-service';
 import { SearchPage } from '../search/search';
 import { ChooseMajorsPage } from '../edit-classes/edit-classes';
 import { ChooseClassesPage } from '../choose-classes/choose-classes';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
 
   constructor(private nav: NavController,  public authData: AuthService) {
 
