@@ -3,16 +3,15 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../providers/auth-service';
 import { SearchPage } from '../search/search';
-import { ChooseMajorsPage } from '../edit-classes/edit-classes';
+import { SearchGroupsPage } from '../search-groups/search-groups';
+//import { ChooseMajorsPage } from '../edit-classes/edit-classes';
 import { ChooseClassesPage } from '../choose-classes/choose-classes';
-import firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
 
   constructor(private nav: NavController,  public authData: AuthService) {
 
@@ -25,12 +24,12 @@ export class HomePage {
   }
 
   searchClass(){
-    this.nav.push(SearchPage);
+    this.nav.push(SearchGroupsPage);
   }
 
   addMajorsToSearch(){
     //this will take you to choose the major(s) you want to save when searching for classes to add
-    this.nav.push(ChooseMajorsPage);
+    //this.nav.push(ChooseMajorsPage);
   }
 
   addClassesToSearch(){
