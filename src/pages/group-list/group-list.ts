@@ -14,6 +14,10 @@ export class Group {
   public key: string;
   public name: string;
 
+  public locationX: number;
+  public locationY: number;
+  public rating: number;
+
   setActiveString(bool) {
     if (bool) {
       this.activeString = "Yes";
@@ -72,6 +76,12 @@ export class GroupListPage {
                 groupObj.count = feature.val();
               } else if (feature.key == "name") {
                 groupObj.name = feature.val();
+              } else if (feature.key == "lon"){
+                 groupObj.locationX = feature.val();
+              } else if (feature.key == "lat"){
+                 groupObj.locationY = feature.val();
+              } else if (feature.key == "rating"){
+                groupObj.rating = feature.val();
               }
             })
           })
@@ -94,6 +104,15 @@ export class GroupListPage {
       uid: this.uid,
       classID: this.classID,
      });
+  }
+
+  sortGroups(){
+    
+
+  }
+
+  compare(a, b){
+
   }
 
 }
