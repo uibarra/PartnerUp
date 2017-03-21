@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { SearchPage } from '../search/search';
 import firebase from 'firebase';
-
 
 @Component({
   selector: 'page-choose-classes',
@@ -10,72 +10,48 @@ import firebase from 'firebase';
 })
 
 export class ChooseClassesPage {
+  
+  	loggedInUser: any;
+  	loggedInUserID: any;
+    classes: FirebaseListObservable<any>;
 
-	depts: any;
-  	selectedClasses: any;
-  	public loggedInUser: any;
-  	public loggedInUserID: any;
-  	firebaseReference: any;
-  	classes: FirebaseListObservable<any[]>;
-  	deptListOfDepartmentObjects: any;
+  	constructor(
+      public nav: NavController, public alertCtrl: AlertController,
+      public params: NavParams, angFire: AngularFire) {
 
-  	constructor(public nav: NavController, public alertCtrl: AlertController, angFire: AngularFire) {
-
-  		this.selectedClasses = [];
     	this.loggedInUser = firebase.auth().currentUser;
     	this.loggedInUserID = this.loggedInUser.uid;
-    	this.firebaseReference = firebase.database().ref('/userProfile/' + this.loggedInUserID);
-    	this.depts = [];
-    	this.deptListOfDepartmentObjects = [];
-    	this.selectedClasses = [];
-    	this.getDepartments(angFire);
-    	this.getClassesOfAllSpecifiedDepartments(angFire);
-    	
+      this.classes = angFire.database.list('/userProfile/' + this.loggedInUserID + '/classesList');
   	}
 
-  	getDepartments(angFire){
+    addClass(){
+        this.nav.push(SearchPage, {
+          uid: this.loggedInUserID,
+        })
+    }
 
-		angFire.database.list('/userProfile/' + this.loggedInUserID + '/majorsList', { preserveSnapshot: true})
-    	.subscribe(snapshots => {
-        	snapshots.forEach(snapshot => {
-          		this.depts.push(snapshot.val());
-        	});
-    	})
-  	}
+    removeClass(classID){
+      let confirm = this.alertCtrl.create({
+        title: 'Remove Class',
+        message: 'Are you sure you want to remove this class?',
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Confirm',
+            handler: () => {
+              console.log('Confirm clicked');
+              this.classes.remove(classID);
+            }
+          }
+        ]
+      });
 
-  	getClassesOfAllSpecifiedDepartments(angFire){
-  		for (let department of this.depts) {
-   			this.classes = angFire.database.list('/department/' + department);
-   			this.deptListOfDepartmentObjects.push(angFire.database.list('/department/' + department));
-		}
-
-  	}
-
-  	addClass(className){
-  		var index = this.selectedClasses.indexOf(className);
-		  if (index > -1) {
-	    	  this.selectedClasses.splice(index, 1);
-		  } else {
-	 	     this.selectedClasses.push(className);
-		  }
-  	}
-
-  	saveClassesToDatabase(){
-  		var ref = firebase.database().ref().child('userProfile').child(this.loggedInUserID).child("classesList");
-		  ref.set(this.selectedClasses);
-      this.addUserToClasses(this.loggedInUserID);
-  	}
-
-
-    addUserToClasses(userID){
-
-        for(let className of this.selectedClasses){
-          var ref= firebase.database().ref().child(className).child("classMateIDs");
-          ref.child(userID).set(true); //sets to true if the user is in the class,
-                                       // later on if we wanna delete the user, we set it to false 
-        }
-      }
-
-    
+      confirm.present();
+    }
 
 }

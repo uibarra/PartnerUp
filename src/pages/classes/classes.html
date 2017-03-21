@@ -6,8 +6,8 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let course of classes | async" (click)="classSelected(course)">
-      <h4>{{course.$key}}</h4>
+    <button ion-item detail-none text-wrap *ngFor="let course of classes | async" (click)="showConfirmClass(course)">
+      <h5>{{course.$key}}</h5>
     </button>
   </ion-list>
 </ion-content>

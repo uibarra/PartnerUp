@@ -6,13 +6,14 @@ import { SearchPage } from '../search/search';
 import { ChooseClassesPage } from '../choose-classes/choose-classes';
 import { AccountsPage } from '../account-page/account-page';
 import firebase from 'firebase';
+import { SearchGroupsPage } from '../search-groups/search-groups';
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
 
   constructor(private nav: NavController,  public authData: AuthService) {
 
@@ -25,7 +26,7 @@ export class HomePage {
   }
 
   searchClass(){
-    this.nav.push(SearchPage);
+    this.nav.push(SearchGroupsPage);
   }
 
   addClassesToSearch(){
