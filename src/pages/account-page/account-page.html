@@ -1,0 +1,55 @@
+<ion-header>
+	<ion-navbar>
+	  <div class>
+	  	<ion-title>Account Settings</ion-title>
+	  </div>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-card class="avatar-card">
+  <img src="{{profilePicUrl}}"/>
+</ion-card>
+
+
+<ion-list>
+
+	<form (ngSubmit)="saveAccountInfo()" [formGroup]="profileForm">
+
+		<button ion-button block (click)="updateMajors()">Update Majors</button>
+
+		<ion-item>
+			<ion-label color="primary" stacked>Name</ion-label>
+			<ion-input formControlName="name" placeholder="you don't have a name?"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary" stacked>Telephone</ion-label>
+			<ion-input formControlName="telephone" type="tel" placeholder="gimme those digits"></ion-input>
+		</ion-item>
+
+
+		<ion-item>
+			<ion-label color="primary" stacked>Email</ion-label>
+			<ion-input formControlName="email" type="email" placeholder="your email"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary" stacked>UCI Net ID</ion-label>
+			<ion-input formControlName="netID" placeholder="UCI Net ID"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary" stacked>Avatar Image URL</ion-label>
+			<ion-input formControlName="imageURL" placeholder="direct link to image"></ion-input>
+		</ion-item>
+
+		<button ion-button type="submit" full round>
+    		Save Account Info
+    	</button>
+	</form>
+
+  </ion-list>
+
+</ion-content>
