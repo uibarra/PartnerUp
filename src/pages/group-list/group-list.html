@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Groups
+    </ion-title>
+  </ion-navbar>
+  <p text-wrap style="text-align: center">{{classID}}</p>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item text-wrap *ngFor="let group of groups | async" (click)="groupSelected(group.$key)">
+      <h2>Name: {{group.name}}</h2>
+      <p>Members: {{group.count}}</p>
+      <p>Active: {{group.active}}</p>
+    </button>
+  </ion-list>
+  <button ion-button full (click)="createGroup()">
+    Create Group
+  </button>
+</ion-content>

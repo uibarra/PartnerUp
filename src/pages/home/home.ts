@@ -8,6 +8,7 @@ import { NotificationsPage } from '../notifications/notifications';
 import { AccountsPage } from '../account-page/account-page';
 import firebase from 'firebase';
 import { SearchGroupsPage } from '../search-groups/search-groups';
+import { UserGroupsPage } from '../user-groups/user-groups';
 
 
 @Component({
@@ -32,6 +33,10 @@ export class HomePage {
 
   addClassesToSearch(){
     this.nav.push(ChooseClassesPage);
+  }
+
+  userGroups(){
+    this.nav.push(UserGroupsPage);
   }
 
   showNotifications(){

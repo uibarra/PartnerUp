@@ -1,0 +1,52 @@
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>New Group</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Public</ion-label>
+      <ion-checkbox dark item-right checked="true"></ion-checkbox>
+    </ion-item>
+    <button ion-button full type="submit" [disabled]="!todo.valid">Create</button>
+  </form>
+
+</ion-content> -->
+
+<ion-content padding>
+  <ion-title>Create Group</ion-title>
+  <div padding>
+  </div>
+
+  <!-- <form [formGroup]="createForm" (submit)="create()"> -->
+  <form [formGroup]="createForm" (ngSubmit)="create()">
+    <ion-item>
+      <!-- <ion-label>Name</ion-label> -->
+      <ion-input type="text" formControlName="name" placeholder="Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-label>Description</ion-label> -->
+      <ion-input type="text" formControlName="description" placeholder="Write a description (optional)"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Public</ion-label>
+      <ion-checkbox item-right formControlName="public"></ion-checkbox>
+    </ion-item>
+
+    <button ion-button full type="submit" [disabled]="!createForm.valid">Create</button>
+  </form>
+
+  <button ion-button full (click)="cancel()">Cancel</button>
+</ion-content>

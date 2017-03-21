@@ -20,6 +20,13 @@ import { StudyInvitePage } from '../pages/study-invite/study-invite';
 import { GroupInvitePage } from '../pages/group-invite/group-invite';
 import { AccountsPage } from '../pages/account-page/account-page';
 
+import { UserGroupsPage } from '../pages/user-groups/user-groups';
+import { GroupListPage } from '../pages/group-list/group-list';
+import { CreateGroupPage } from '../pages/create-group/create-group';
+
+
+
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
   authDomain: "partnerup-f0351.firebaseapp.com",
@@ -42,10 +49,13 @@ export const firebaseConfig = {
     OptionsPage,
     ChooseMajorsPage,
     ChooseClassesPage,
-	NotificationsPage,
-	StudyInvitePage,
-	GroupInvitePage,
-    AccountsPage
+	  NotificationsPage,
+	  StudyInvitePage,
+	  GroupInvitePage,
+    AccountsPage,
+    UserGroupsPage,
+    GroupListPage,
+    CreateGroupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -65,10 +75,13 @@ export const firebaseConfig = {
     OptionsPage,
     ChooseMajorsPage,
     ChooseClassesPage,
-	NotificationsPage,
-	StudyInvitePage,
-	GroupInvitePage,
-    AccountsPage
+	  NotificationsPage,
+	  StudyInvitePage,
+	  GroupInvitePage,
+    AccountsPage,
+    UserGroupsPage,
+    GroupListPage,
+    CreateGroupPage
   ],
   providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
