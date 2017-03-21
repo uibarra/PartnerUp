@@ -45,6 +45,8 @@ export class CreateGroupPage {
       description: formInfo.description,
       leader: this.uid,
       location: "CHANGE THIS TO GPS COORDINATES",
+      lon: 0,
+      lat: 0,
       members: [this.uid],
       name: formInfo.name,
       public: formInfo.public,
