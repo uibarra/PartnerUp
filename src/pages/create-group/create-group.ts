@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import firebase from 'firebase';
+
 
 @Component({
   selector: 'page-create-group',
@@ -12,7 +14,6 @@ export class CreateGroupPage {
   private classID: string;
   public createForm: FormGroup;
   private groups: FirebaseListObservable<any>;
-  private userGroups: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,
     public navParams: NavParams, private formBuilder: FormBuilder, angFire: AngularFire) {
@@ -25,8 +26,9 @@ export class CreateGroupPage {
       public: [true]
     });
 
-    this.groups = angFire.database.list('/groups/' + this.classID);
-    this.userGroups = angFire.database.list('/userProfile/' + this.uid + '/groupsList');
+    //this.groups = angFire.database.list('/groups/' + this.classID);
+    this.groups = angFire.database.list('/groups/');
+
   }
 
   create() {
@@ -35,6 +37,7 @@ export class CreateGroupPage {
     let val = this.groups.push({
       active: false,
       count: 1,
+      course: this.classID,
       description: formInfo.description,
       leader: this.uid,
       location: "CHANGE THIS TO GPS COORDINATES",
@@ -44,8 +47,25 @@ export class CreateGroupPage {
       rating: 0
     });
 
-    //this.userGroups.push({this.classID: val.key});
-    this.userGroups.push(val.key);
+    // let jsonObj = {};
+    // jsonObj[val.key] = this.classID;
+    // var ref = firebase.database().ref().child('userProfile').child(this.uid).child("groupsList");
+    // ref.set(jsonObj);
+    // let jsonObj = {};
+    // jsonObj[val.key] = this.classID;
+    // var ref = firebase.database().ref().
+    //   child('userProfile').
+    //   child(this.uid).
+    //   child("groupsList").
+    //   child(this.classID);
+
+    var ref = firebase.database().
+      ref('userProfile/' + this.uid).
+      child('groupsList/' + this.classID).
+      child(val.key);
+
+    ref.set(true);
+
 
     let confirm = this.alertCtrl.create({
       title: 'Group created',
