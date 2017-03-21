@@ -44,7 +44,7 @@ export const firebaseConfig = {
     ChooseClassesPage,
 	NotificationsPage,
 	StudyInvitePage,
-	GroupInvitePage
+	GroupInvitePage,
     AccountsPage
   ],
   imports: [
@@ -67,7 +67,7 @@ export const firebaseConfig = {
     ChooseClassesPage,
 	NotificationsPage,
 	StudyInvitePage,
-	GroupInvitePage
+	GroupInvitePage,
     AccountsPage
   ],
   providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
