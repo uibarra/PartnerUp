@@ -29,6 +29,7 @@ export class Group {
 })
 export class GroupListPage {
 
+  af: any;
   user: any;
   uid: any;
   classID: any;
@@ -37,15 +38,21 @@ export class GroupListPage {
 
   constructor(public nav: NavController, public navParams: NavParams,
     public modalCtrl: ModalController, af: AngularFire) {
+
+    this.af = af;
     this.user = firebase.auth().currentUser;
     this.uid = this.user.uid;
     this.classID = this.navParams.get('classID');
-    this.groups = [];
+    this.groups = new Array;
 
     this.groupIDs = af.database.list(
       '/userProfile/' + this.uid + '/groupsList/' + this.classID,
       { preserveSnapshot: true }
     );
+  }
+
+  ionViewWillEnter() {
+    this.groups = new Array;
 
     this.groupIDs
       .subscribe(groups => {
@@ -53,7 +60,7 @@ export class GroupListPage {
           let groupObj = new Group();
           groupObj.key = group.key;
 
-          let query = af.database.list('/groups/' + group.key,
+          let query = this.af.database.list('/groups/' + group.key,
             { preserveSnapshot: true }
           );
 

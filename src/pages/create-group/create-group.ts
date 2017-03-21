@@ -4,6 +4,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import firebase from 'firebase';
 
+ import { Events } from 'ionic/angular2';
+
 
 @Component({
   selector: 'page-create-group',
@@ -14,6 +16,7 @@ export class CreateGroupPage {
   private classID: string;
   public createForm: FormGroup;
   private groups: FirebaseListObservable<any>;
+  private groupByClass: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,
     public navParams: NavParams, private formBuilder: FormBuilder, angFire: AngularFire) {
@@ -28,6 +31,7 @@ export class CreateGroupPage {
 
     //this.groups = angFire.database.list('/groups/' + this.classID);
     this.groups = angFire.database.list('/groups/');
+    this.groupByClass = angFire.database.list(this.classID);
 
   }
 
@@ -63,9 +67,9 @@ export class CreateGroupPage {
       ref('userProfile/' + this.uid).
       child('groupsList/' + this.classID).
       child(val.key);
-
     ref.set(true);
 
+    this.groupByClass.push(val.key);
 
     let confirm = this.alertCtrl.create({
       title: 'Group created',
