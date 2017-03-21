@@ -6,6 +6,7 @@ import { SearchPage } from '../search/search';
 import { SearchGroupsPage } from '../search-groups/search-groups';
 //import { ChooseMajorsPage } from '../edit-classes/edit-classes';
 import { ChooseClassesPage } from '../choose-classes/choose-classes';
+import { NotificationsPage } from '../notifications/notifications';
 
 @Component({
   selector: 'page-home',
@@ -35,5 +36,10 @@ export class HomePage {
   addClassesToSearch(){
     this.nav.push(ChooseClassesPage);
   }
+
+  showNotifications(){
+    this.nav.push(NotificationsPage);
+  }
+
 
 }

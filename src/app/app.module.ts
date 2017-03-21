@@ -15,6 +15,9 @@ import { SearchGroupsPage } from '../pages/search-groups/search-groups';
 import { ClassGroupsPage } from '../pages/class-groups/class-groups';
 import { ChooseMajorsPage } from '../pages/edit-classes/edit-classes';
 import { ChooseClassesPage } from '../pages/choose-classes/choose-classes';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import { StudyInvitePage } from '../pages/study-invite/study-invite';
+import { GroupInvitePage } from '../pages/group-invite/group-invite';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
@@ -37,7 +40,10 @@ export const firebaseConfig = {
     ClassesPage,
     OptionsPage,
     ChooseMajorsPage,
-    ChooseClassesPage
+    ChooseClassesPage,
+	NotificationsPage,
+	StudyInvitePage,
+	GroupInvitePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -56,7 +62,10 @@ export const firebaseConfig = {
     ClassesPage,
     OptionsPage,
     ChooseMajorsPage,
-    ChooseClassesPage
+    ChooseClassesPage,
+	NotificationsPage,
+	StudyInvitePage,
+	GroupInvitePage
   ],
   providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
