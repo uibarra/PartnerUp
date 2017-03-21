@@ -9,13 +9,14 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item text-wrap *ngFor="let group of groups | async" (click)="groupSelected(group.$key)">
+    <button ion-item text-wrap *ngFor="let group of groups" (click)="groupSelected(group.key)">
       <h2>Name: {{group.name}}</h2>
       <p>Members: {{group.count}}</p>
-      <p>Active: {{group.active}}</p>
+      <p>Active: {{group.activeString}}</p>
     </button>
   </ion-list>
   <button ion-button full (click)="createGroup()">
+    <!-- <ion-icon name="add-circle" (click)="createGroup()"></ion-icon> -->
     Create Group
   </button>
 </ion-content>

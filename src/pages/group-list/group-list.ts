@@ -4,27 +4,23 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import firebase from 'firebase';
 
 import { CreateGroupPage } from '../create-group/create-group';
-import { Subject } from 'rxjs/Subject';
-//import 'rxjs/add/operator/mergeMap';
-//import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/toPromise';
-
 
 
 export class Group {
-  constructor(
-    public active: boolean,
-    public count: number,
-    //public course: string,
-    public description: string,
-    //public leader: string,
-    //public location: string,
-    //public members: Array<string>,
-    public name: string,
-    //public public: boolean,
-    //public rating: number
-  ){}
+  public active: boolean;
+  public activeString: string;
+  public count: number;
+  public description: string;
+  public key: string;
+  public name: string;
+
+  setActiveString(bool) {
+    if (bool) {
+      this.activeString = "Yes";
+    } else {
+      this.activeString = "No";
+    }
+  }
 }
 
 @Component({
@@ -36,50 +32,48 @@ export class GroupListPage {
   user: any;
   uid: any;
   classID: any;
-  subject: Subject<any>;
-  groups: FirebaseListObservable<any>;;
+  groups: Array<Group>;
   groupIDs: FirebaseListObservable<any>;
-  groupQuery: FirebaseListObservable<any>;
 
   constructor(public nav: NavController, public navParams: NavParams,
     public modalCtrl: ModalController, af: AngularFire) {
     this.user = firebase.auth().currentUser;
     this.uid = this.user.uid;
     this.classID = this.navParams.get('classID');
-
-    this.subject = new Subject();
-    this.groupQuery = af.database.list('/groups/', {
-      query: { equalTo: this.subject }
-    });
+    this.groups = [];
 
     this.groupIDs = af.database.list(
       '/userProfile/' + this.uid + '/groupsList/' + this.classID,
       { preserveSnapshot: true }
     );
 
-    let groupIDArr: Array<any>;
     this.groupIDs
-      .subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          //this.subject.next(snapshot.key);
-          //let groupObj = new Group();
-          // this.groupQuery.subscribe(groups => {
-          //   groups.forEach(group => {
-          //     let groupObj = new Group(group.active, group.count, group.description, group.name)
-          //     this.groups.push(groupObj);
-          //   });
-          // });
-          let stringID: string = snapshot.key
-          //groupIDArr.push(snapshot.key);
-          console.log(snapshot.key);
+      .subscribe(groups => {
+        groups.forEach(group => {
+          let groupObj = new Group();
+          groupObj.key = group.key;
+
+          let query = af.database.list('/groups/' + group.key,
+            { preserveSnapshot: true }
+          );
+
+          query.subscribe(group => {
+            group.forEach(feature => {
+              if (feature.key == "active") {
+                groupObj.active = feature.val();
+                groupObj.setActiveString(groupObj.active);
+              } else if (feature.key == "count") {
+                groupObj.count = feature.val();
+              } else if (feature.key == "name") {
+                groupObj.name = feature.val();
+              }
+            })
+          })
+
+          this.groups.push(groupObj);
+
         })
       });
-
-      for (let ID of groupIDArr) {
-        this.groups = af.database.list('/groups/', {
-          query: { equalTo: ID }
-        });
-      }
   }
 
   groupSelected(groupID) {
