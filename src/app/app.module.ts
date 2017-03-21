@@ -18,6 +18,7 @@ import { ChooseClassesPage } from '../pages/choose-classes/choose-classes';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { StudyInvitePage } from '../pages/study-invite/study-invite';
 import { GroupInvitePage } from '../pages/group-invite/group-invite';
+import { AccountsPage } from '../pages/account-page/account-page';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCGvLBRGDy8SjTziO93H2ocLxwe-Lrhf6g",
@@ -44,6 +45,7 @@ export const firebaseConfig = {
 	NotificationsPage,
 	StudyInvitePage,
 	GroupInvitePage
+    AccountsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -66,6 +68,7 @@ export const firebaseConfig = {
 	NotificationsPage,
 	StudyInvitePage,
 	GroupInvitePage
+    AccountsPage
   ],
   providers: [AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
