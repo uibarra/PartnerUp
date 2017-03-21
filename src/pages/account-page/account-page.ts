@@ -52,7 +52,7 @@ export class AccountsPage {
             	this.profileForm.controls['netID'].setValue(snapshot.val());
             	this.uciNetID = this.profileForm.value['netID'];
             	//this will fail in your browser, in android it is fine, not tested with iOS
-            	//this.saveCampusDirReqToDatabase(this.uciNetID);
+            	this.saveCampusDirReqToDatabase(this.uciNetID);
 
             }
            	if(snapshot.key == "telephone"){
