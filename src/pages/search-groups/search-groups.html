@@ -7,7 +7,7 @@
 <ion-content padding>
   <ion-list>
     <button ion-item text-wrap *ngFor="let course of courses | async" (click)="showCourseGroups(course.Course)">
-      <h6>{{course.Course}}</h6>
+      <h6 (click)="showCourseGroups(course.Course)">{{course.Course}}</h6>
     </button>
   </ion-list>
 </ion-content>

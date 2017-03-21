@@ -28,6 +28,9 @@ export class SearchGroupsPage {
     }
 
     showCourseGroups(courseID) {
+      console.log(courseID, "this is the course id search-groupsts");
       this.nav.push(ClassGroupsPage, {courseID: courseID});
     }
+
+
 }

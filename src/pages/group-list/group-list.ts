@@ -63,7 +63,6 @@ export class GroupListPage {
           let query = this.af.database.list('/groups/' + group.key,
             { preserveSnapshot: true }
           );
-
           query.subscribe(group => {
             group.forEach(feature => {
               if (feature.key == "active") {
