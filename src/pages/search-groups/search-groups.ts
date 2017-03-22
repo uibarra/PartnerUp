@@ -5,6 +5,27 @@ import { SearchPage } from '../search/search';
 import { ClassGroupsPage } from '../class-groups/class-groups';
 import firebase from 'firebase';
 
+export class Group {
+  public active: boolean;
+  public activeString: string;
+  public count: number;
+  public description: string;
+  public key: string;
+  public name: string;
+
+  public locationX: number;
+  public locationY: number;
+  public rating: number;
+
+  setActiveString(bool) {
+    if (bool) {
+      this.activeString = "Yes";
+    } else {
+      this.activeString = "No";
+    }
+  }
+}
+
 @Component({
   selector: 'page-search-groups',
   templateUrl: 'search-groups.html'
@@ -32,5 +53,7 @@ export class SearchGroupsPage {
       this.nav.push(ClassGroupsPage, {courseID: courseID});
     }
 
-
+     ionViewWillEnter() {
+       
+     }
 }
